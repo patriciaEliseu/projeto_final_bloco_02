@@ -29,7 +29,7 @@ public class Produto {
 	@Size(min = 3, message = "O atributo nome deve conter no mínimo 3 caracteres")
 	private String nome;
 
-	@Column(length = 1000)
+	@Column(length = 10000)
 	@NotBlank(message = "O atributo descricao é obrigatório!")
 	@Size(min = 5, message = "O atributo descricao deve conter no mínimo 5 caracteres")
 	private String descricao;
@@ -41,14 +41,8 @@ public class Produto {
 	@JsonIgnoreProperties("Categoria")
 	private Categoria categoria;
 		
-	@Column(length = 255)
-	@NotBlank(message = "O atributo plataforma é obrigatório!")
-	@Size(min = 3, message = "O atributo plataforma deve conter no mínimo 3 caracteres")
-	private String plataforma;
-
 	@Column(updatable = false) // Quero que depois que a data foi criada no momento que o produto foi inserido no sistema e não mude mais depois disso.
-	@NotNull(message = "A data é obrigatória")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
 	private LocalDateTime data;
 
 	@NotNull(message = "O atributo estoque é obrigatório!")
@@ -97,14 +91,7 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
-	public String getPlataforma() {
-		return plataforma;
-	}
-
-	public void setPlataforma(String plataforma) {
-		this.plataforma = plataforma;
-	}
-
+		
 	public LocalDateTime getData() {
 		return data;
 	}

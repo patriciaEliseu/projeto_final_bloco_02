@@ -38,7 +38,8 @@ public class Produto {
 	private String imagem;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("Categoria")
+	@JoinColumn(name = "categoria_id")
+	@JsonIgnoreProperties("Produto")
 	private Categoria categoria;
 		
 	@Column(length = 255)

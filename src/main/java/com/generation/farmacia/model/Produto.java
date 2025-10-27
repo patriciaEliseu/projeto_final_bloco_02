@@ -38,7 +38,8 @@ public class Produto {
 	private String imagem;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("Categoria")
+	@JoinColumn(name = "categoria_id")
+	@JsonIgnoreProperties("Produto")
 	private Categoria categoria;
 		
 	@Column(updatable = false) // Quero que depois que a data foi criada no momento que o produto foi inserido no sistema e não mude mais depois disso.

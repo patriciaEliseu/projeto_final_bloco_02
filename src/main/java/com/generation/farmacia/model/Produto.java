@@ -2,6 +2,8 @@ package com.generation.farmacia.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,21 +32,22 @@ public class Produto {
 	@Size(min = 3, message = "O atributo nome deve conter no mínimo 3 caracteres")
 	private String nome;
 
-	@Column(length = 10000)
+	
 	@NotBlank(message = "O atributo descricao é obrigatório!")
 	@Size(min = 5, message = "O atributo descricao deve conter no mínimo 5 caracteres")
 	private String descricao;
 
-	@NotBlank(message = "O atributo imagem é obrigatório!")
+	// @NotBlank(message = "O atributo imagem é obrigatório!")
 	private String imagem;
 	
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
-	@JsonIgnoreProperties("Produto")
+    @JsonIgnoreProperties("produto")
 	private Categoria categoria;
 		
-	@Column(updatable = false) // Quero que depois que a data foi criada no momento que o produto foi inserido no sistema e não mude mais depois disso.
-	@JsonFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
+	// @Column(updatable = false) // Quero que depois que a data foi criada no momento que o produto foi inserido no sistema e não mude mais depois disso.
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@CreationTimestamp
 	private LocalDateTime data;
 
 	@NotNull(message = "O atributo estoque é obrigatório!")
